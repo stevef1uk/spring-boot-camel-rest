@@ -6,7 +6,7 @@
 
 	<groupId>com.brentyarger.spring-boot-camel-rest</groupId>
 	<artifactId>spring-boot-camel-rest</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 
 	<name>A Camel Spring Boot Route</name>
