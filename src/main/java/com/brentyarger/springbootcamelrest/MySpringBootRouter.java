@@ -21,7 +21,7 @@ public class MySpringBootRouter extends FatJarRouter {
     	
         rest("/hello").get().to("direct:hello");
         
-        from("direct:hello").transform().simple("Hello There Stevey Again!");
+        from("direct:hello").transform().simple("Hello There Steve Again!");
         
     }
 
