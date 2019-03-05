@@ -1,0 +1,30 @@
+apiVersion: skaffold/v1beta2
+kind: Config
+build:
+  artifacts:
+  - image: changeme
+    context: .
+    docker: {}
+  tagPolicy:
+    envTemplate:
+      template: '{{.DOCKER_REGISTRY}}/stevef1uk-gmail-com/spring-boot-camel-rest:{{.VERSION}}'
+  local: {}
+deploy:
+  kubectl: {}
+profiles:
+- name: dev
+  build:
+    artifacts:
+    - docker: {}
+    tagPolicy:
+      envTemplate:
+        template: '{{.DOCKER_REGISTRY}}/stevef1uk-gmail-com/spring-boot-camel-rest:{{.DIGEST_HEX}}'
+    local: {}
+  deploy:
+    helm:
+      releases:
+      - name: spring-boot-camel-rest
+        chartPath: charts/spring-boot-camel-rest
+        setValueTemplates:
+          image.repository: '{{.DOCKER_REGISTRY}}/stevef1uk-gmail-com/spring-boot-camel-rest'
+          image.tag: '{{.DIGEST_HEX}}'
